@@ -1,7 +1,7 @@
-define dock_item ($action = "add", $item, $position)
+define dock_item ($action = "add", $item, $position = "unset")
 {
     
-        if ($position == undef){
+        if ($position == "unset"){
             exec {'dockutil':
                 command => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\""
             }
