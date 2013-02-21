@@ -1,13 +1,15 @@
-define dock_item ($action = "add", $item, $position = "unset")
+define dock_item ($item, $action = "add", $position = "unset")
 {
     
         if ($position == "unset"){
             exec {'dockutil':
-                command => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\""
+                command => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\"",
+                require => Repository['Dockutil'],
             }
         }else{
             exec {'dockutil':
-                command => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\" --position ${position}"
+                command => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\" --position ${position}",
+                equire => Repository['Dockutil'],
             }
         }
         
