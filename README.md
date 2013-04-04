@@ -5,9 +5,12 @@ This module allows you to mange your dock using Kyle Crawford’s awesome dockut
 ## Usage
 
 ```puppet
-dockutil { 'best example ever':
-  salutation => 'fam'
-}
+dockutil::item { 'Add iTerm':
+		item 	 => "/Applications/iTerm.app",
+		label	     => "iTerm",
+		action 	 => "add",
+		position => 2,
+	}
 ```
 
 ## Required Puppet Modules
