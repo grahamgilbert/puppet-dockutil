@@ -14,10 +14,10 @@ case $action {
 	"add":{
 		exec {"dockutil-$action-$label-add":
 			command => $position ? {
-				"unset" => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\" --label \"${label}\" --no-restart",
-				default => "/tmp/dockutil/scripts/dockutil --${action} \"${item}\" --label \"${label}\" --position ${position} --no-restart",
+				"unset" => "${boxen::config::cachedir}/dockutil/scripts/dockutil --${action} \"${item}\" --label \"${label}\" --no-restart",
+				default => "${boxen::config::cachedir}/dockutil/scripts/dockutil --${action} \"${item}\" --label \"${label}\" --position ${position} --no-restart",
 				},
-			onlyif => "/tmp/dockutil/scripts/dockutil --find \"${label}\" | grep -qx \"${label} was not found in /Users/${::luser}/Library/Preferences/com.apple.dock.plist\"",
+			onlyif => "${boxen::config::cachedir}/dockutil/scripts/dockutil --find \"${label}\" | grep -qx \"${label} was not found in /Users/${::luser}/Library/Preferences/com.apple.dock.plist\"",
 			require => Repository['Dockutil'],
 			notify => Exec["kill dock ${label}"],
 		}
@@ -26,8 +26,8 @@ case $action {
 	"remove":{
 		exec {"dockutil-$label-$item":
 			require => Repository['Dockutil'],
-			command => "/tmp/dockutil/scripts/dockutil --remove \"${label}\" --no-restart",
-			onlyif => "/tmp/dockutil/scripts/dockutil --find \"${label}\" | grep -q \"${label} was found\"",
+			command => "${boxen::config::cachedir}/dockutil/scripts/dockutil --remove \"${label}\" --no-restart",
+			onlyif => "${boxen::config::cachedir}/dockutil/scripts/dockutil --find \"${label}\" | grep -q \"${label} was found\"",
 			notify => Exec["kill dock ${label}"],
 		}
 	}
