@@ -5,7 +5,7 @@ define dockutil::item (
   $position = "unset",
 )
 {
-  include dockutil
+  require dockutil
 
   validate_re($action, '^(add|remove)$',
   "${action} is not supported for action.
