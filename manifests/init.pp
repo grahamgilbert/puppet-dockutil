@@ -9,7 +9,7 @@ class dockutil (
   }
 
   repository { 'Dockutil':
-    ensure => $version,
+    ensure => $rel,
     source => 'kcrawford/dockutil',
     path   => "${boxen::config::cachedir}/dockutil",
   }
