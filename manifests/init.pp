@@ -2,8 +2,10 @@ class dockutil (
   $version = undef
 ) {
 
-  unless $version {
-    $version = '4bbdbc95519b70ac00391c4ebe34592fd351f491'
+  if $version {
+    $rel = $version
+  } else {
+    $rel = '4bbdbc95519b70ac00391c4ebe34592fd351f491'
   }
 
   repository { 'Dockutil':
